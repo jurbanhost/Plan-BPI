@@ -1,0 +1,27 @@
+exp_name: segformer_512_mit-b2_864
+outdir: ./experiments/
+dataset:
+  root_dir: /home/powned/projects/championat/full_dataset
+  val_size: 0.1
+  test_dir: /home/powned/projects/championat/test
+  with_augs: true
+  input_size: 864
+  batch_size: 3
+  num_workers: 12
+  part: full
+  augmentation: null
+seed: 42
+model:
+  pretrain_name: nvidia/mit-b2
+train:
+  optimizer: AdamW
+  grad_accum_steps: 6
+  learning_rate: 0.00012
+  min_learning_rate: 0.0001
+  momentum: 0.9
+  weight_decay: 0.01
+  lr_schedule:
+    name: cosine
+    step_size: 4
+    gamma: 0.632
+  n_epoch: 100
